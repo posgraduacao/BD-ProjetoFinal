@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -16,10 +17,17 @@ public class SerieTemporal {
 	@Column(name = "serietemporal_id")
 	private Integer id;
 	private String nomeSerie;
+	
+	@ManyToMany
 	@JoinColumn(name = "unidademedida_id")
 	private UnidadeMedida unidadeMedida;
+	
+	@ManyToMany
 	@JoinColumn(name = "equipamento_id")
 	private Equipamento equipamento;
+	
+	@ManyToMany(mappedBy="serieTemporal")
+	private PontoSerieTemporal pontoSerieTemporal;
 
 	public Integer getId() {
 		return id;
@@ -51,6 +59,14 @@ public class SerieTemporal {
 
 	public void setEquipamento(Equipamento equipamento) {
 		this.equipamento = equipamento;
+	}
+
+	public PontoSerieTemporal getPontoSerieTemporal() {
+		return pontoSerieTemporal;
+	}
+
+	public void setPontoSerieTemporal(PontoSerieTemporal pontoSerieTemporal) {
+		this.pontoSerieTemporal = pontoSerieTemporal;
 	}
 
 	@Override

@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 
@@ -19,8 +20,11 @@ public class PontoSerieTemporal {
 	@Column(name="pontoserietemporal_id")
 	private Integer id;
 	private Date dataHoraMedicao;
+	
+	@ManyToMany
 	@JoinColumn(name="serietemporal_id")
 	private SerieTemporal serieTemporal;
+	
 	private double valor;
 
 	public Integer getId() {

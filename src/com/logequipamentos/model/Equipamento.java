@@ -2,20 +2,34 @@ package com.logequipamentos.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="EQUIPAMENTO")
+@Table(name = "EQUIPAMENTO")
 public class Equipamento {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="equipamento_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "equipamento_id")
 	private Integer id;
 	private String nome;
 	private String descricao;
+
+	@OneToMany
+	@JoinColumn(name = "fabricante_id")
+	private Fabricante fabricante;
+
+	@ManyToMany(mappedBy = "equipamento", fetch = FetchType.EAGER)
+	private Inspecao inspecao;
+
+	@ManyToMany(mappedBy = "equipamento", fetch = FetchType.EAGER)
+	private SerieTemporal serieTemporal;
 
 	public Integer getId() {
 		return id;
@@ -39,6 +53,30 @@ public class Equipamento {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+
+	public Fabricante getFabricante() {
+		return fabricante;
+	}
+
+	public void setFabricante(Fabricante fabricante) {
+		this.fabricante = fabricante;
+	}
+
+	public Inspecao getInspecao() {
+		return inspecao;
+	}
+
+	public void setInspecao(Inspecao inspecao) {
+		this.inspecao = inspecao;
+	}
+
+	public SerieTemporal getSerieTemporal() {
+		return serieTemporal;
+	}
+
+	public void setSerieTemporal(SerieTemporal serieTemporal) {
+		this.serieTemporal = serieTemporal;
 	}
 
 	@Override

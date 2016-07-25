@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -13,14 +14,17 @@ public class UnidadeMedida {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "unidademedida_id")
-	private Integer id;
+	private String id;
 	private String nomeUnidade;
+	
+	@ManyToMany(mappedBy="unidadeMedida")
+	private SerieTemporal serieTemporal;
 
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -30,6 +34,14 @@ public class UnidadeMedida {
 
 	public void setNomeUnidade(String nomeUnidade) {
 		this.nomeUnidade = nomeUnidade;
+	}
+
+	public SerieTemporal getSerieTemporal() {
+		return serieTemporal;
+	}
+
+	public void setSerieTemporal(SerieTemporal serieTemporal) {
+		this.serieTemporal = serieTemporal;
 	}
 
 	@Override

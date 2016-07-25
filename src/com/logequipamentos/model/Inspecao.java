@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -19,8 +20,12 @@ public class Inspecao {
 	private Integer id;
 	private Date dataInspecao;
 	private String relatorio;
+	
+	@ManyToMany
 	@JoinColumn(name="inspetor_id")
 	private Inspetor inspetor;
+	
+	@ManyToMany
 	@JoinColumn(name="equipamento_id")
 	private Equipamento equipamento;
 

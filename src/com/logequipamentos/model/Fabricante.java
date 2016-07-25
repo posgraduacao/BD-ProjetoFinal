@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -16,6 +17,9 @@ public class Fabricante {
 	private Integer id;
 	private String nome;
 	private Long cnpj;
+	
+	@OneToMany(mappedBy="fabricante")
+	private Equipamento equipamento;
 
 	public Integer getId() {
 		return id;
@@ -39,6 +43,14 @@ public class Fabricante {
 
 	public void setCnpj(Long cnpj) {
 		this.cnpj = cnpj;
+	}
+	
+	public Equipamento getEquipamento() {
+		return equipamento;
+	}
+
+	public void setEquipamento(Equipamento equipamento) {
+		this.equipamento = equipamento;
 	}
 
 	@Override

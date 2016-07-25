@@ -5,10 +5,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="INSPETOR")
+@NamedQueries({
+	@NamedQuery (name="Inspetor.findBycpf",
+			query = "SELECT i FROM Inspetor i where i.cpf = :cpf" )
+})
 public class Inspetor {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -16,6 +23,9 @@ public class Inspetor {
 	private Integer id;
 	private String nome;
 	private Long cpf;
+	
+	@ManyToMany(mappedBy="inspetor")
+	private Inspecao inspecao;
 
 	public Integer getId() {
 		return id;
@@ -39,6 +49,14 @@ public class Inspetor {
 
 	public void setCpf(Long cpf) {
 		this.cpf = cpf;
+	}
+	
+	public Inspecao getInspecao() {
+		return inspecao;
+	}
+
+	public void setInspecao(Inspecao inspecao) {
+		this.inspecao = inspecao;
 	}
 
 	@Override
