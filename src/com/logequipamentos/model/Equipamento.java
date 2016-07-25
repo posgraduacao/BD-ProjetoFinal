@@ -1,5 +1,7 @@
 package com.logequipamentos.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -29,7 +31,7 @@ public class Equipamento {
 	private Inspecao inspecao;
 
 	@ManyToMany(mappedBy = "equipamento", fetch = FetchType.EAGER)
-	private SerieTemporal serieTemporal;
+	private List<SerieTemporal> serieTemporal;
 
 	public Integer getId() {
 		return id;
@@ -71,11 +73,11 @@ public class Equipamento {
 		this.inspecao = inspecao;
 	}
 
-	public SerieTemporal getSerieTemporal() {
+	public List<SerieTemporal> getSerieTemporal() {
 		return serieTemporal;
 	}
 
-	public void setSerieTemporal(SerieTemporal serieTemporal) {
+	public void setSerieTemporal(List<SerieTemporal> serieTemporal) {
 		this.serieTemporal = serieTemporal;
 	}
 

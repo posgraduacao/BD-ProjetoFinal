@@ -1,5 +1,7 @@
 package com.logequipamentos.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -26,8 +29,8 @@ public class SerieTemporal {
 	@JoinColumn(name = "equipamento_id")
 	private Equipamento equipamento;
 	
-	@ManyToMany(mappedBy="serieTemporal")
-	private PontoSerieTemporal pontoSerieTemporal;
+	@OneToMany(mappedBy="serieTemporal")
+	private List<PontoSerieTemporal> pontoSerieTemporal;
 
 	public Integer getId() {
 		return id;
@@ -61,11 +64,11 @@ public class SerieTemporal {
 		this.equipamento = equipamento;
 	}
 
-	public PontoSerieTemporal getPontoSerieTemporal() {
+	public List<PontoSerieTemporal> getPontoSerieTemporal() {
 		return pontoSerieTemporal;
 	}
 
-	public void setPontoSerieTemporal(PontoSerieTemporal pontoSerieTemporal) {
+	public void setPontoSerieTemporal(List<PontoSerieTemporal> pontoSerieTemporal) {
 		this.pontoSerieTemporal = pontoSerieTemporal;
 	}
 

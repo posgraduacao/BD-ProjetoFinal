@@ -1,5 +1,7 @@
 package com.logequipamentos.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,21 +13,19 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="INSPETOR")
-@NamedQueries({
-	@NamedQuery (name="Inspetor.findBycpf",
-			query = "SELECT i FROM Inspetor i where i.cpf = :cpf" )
-})
+@Table(name = "INSPETOR")
+@NamedQueries({ @NamedQuery(name = "Inspetor.findBycpf", query = "SELECT i FROM Inspetor i where i.cpf = :cpf") })
 public class Inspetor {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="inspetor_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "inspetor_id")
 	private Integer id;
 	private String nome;
+	@Column(unique = true)
 	private Long cpf;
-	
-	@ManyToMany(mappedBy="inspetor")
-	private Inspecao inspecao;
+
+	@ManyToMany(mappedBy = "inspetor")
+	private List<Inspecao> inspecao;
 
 	public Integer getId() {
 		return id;
@@ -50,12 +50,12 @@ public class Inspetor {
 	public void setCpf(Long cpf) {
 		this.cpf = cpf;
 	}
-	
-	public Inspecao getInspecao() {
+
+	public List<Inspecao> getInspecao() {
 		return inspecao;
 	}
 
-	public void setInspecao(Inspecao inspecao) {
+	public void setInspecao(List<Inspecao> inspecao) {
 		this.inspecao = inspecao;
 	}
 
