@@ -8,8 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -21,11 +22,11 @@ public class SerieTemporal {
 	private Integer id;
 	private String nomeSerie;
 	
-	@ManyToMany
+	@OneToOne
 	@JoinColumn(name = "unidademedida_id")
 	private UnidadeMedida unidadeMedida;
 	
-	@ManyToMany
+	@ManyToOne
 	@JoinColumn(name = "equipamento_id")
 	private Equipamento equipamento;
 	

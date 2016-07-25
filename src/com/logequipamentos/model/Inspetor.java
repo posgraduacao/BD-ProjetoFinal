@@ -7,9 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -24,7 +24,7 @@ public class Inspetor {
 	@Column(unique = true)
 	private Long cpf;
 
-	@ManyToMany(mappedBy = "inspetor")
+	@OneToMany(mappedBy = "inspetor")
 	private List<Inspecao> inspecao;
 
 	public Integer getId() {

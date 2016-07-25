@@ -1,5 +1,7 @@
 package com.logequipamentos.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,7 +21,7 @@ public class Fabricante {
 	private Long cnpj;
 	
 	@OneToMany(mappedBy="fabricante")
-	private Equipamento equipamento;
+	private List<Equipamento> equipamento;
 
 	public Integer getId() {
 		return id;
@@ -44,12 +46,12 @@ public class Fabricante {
 	public void setCnpj(Long cnpj) {
 		this.cnpj = cnpj;
 	}
-	
-	public Equipamento getEquipamento() {
+
+	public List<Equipamento> getEquipamento() {
 		return equipamento;
 	}
 
-	public void setEquipamento(Equipamento equipamento) {
+	public void setEquipamento(List<Equipamento> equipamento) {
 		this.equipamento = equipamento;
 	}
 

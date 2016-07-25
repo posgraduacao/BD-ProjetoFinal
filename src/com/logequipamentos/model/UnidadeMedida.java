@@ -3,7 +3,7 @@ package com.logequipamentos.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -14,7 +14,7 @@ public class UnidadeMedida {
 	private String id;
 	private String nomeUnidade;
 	
-	@ManyToMany(mappedBy="unidadeMedida")
+	@OneToOne(mappedBy="unidadeMedida")
 	private SerieTemporal serieTemporal;
 
 	public String getId() {

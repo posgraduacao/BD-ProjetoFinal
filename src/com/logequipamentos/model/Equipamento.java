@@ -9,7 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -25,12 +24,12 @@ public class Equipamento {
 
 	@OneToMany
 	@JoinColumn(name = "fabricante_id")
-	private Fabricante fabricante;
+	private List<Fabricante> fabricante;
 
-	@ManyToMany(mappedBy = "equipamento", fetch = FetchType.EAGER)
-	private Inspecao inspecao;
+	@OneToMany(mappedBy = "equipamento", fetch = FetchType.EAGER)
+	private List<Inspecao> inspecao;
 
-	@ManyToMany(mappedBy = "equipamento", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "equipamento", fetch = FetchType.EAGER)
 	private List<SerieTemporal> serieTemporal;
 
 	public Integer getId() {
@@ -57,19 +56,19 @@ public class Equipamento {
 		this.descricao = descricao;
 	}
 
-	public Fabricante getFabricante() {
+	public List<Fabricante> getFabricante() {
 		return fabricante;
 	}
 
-	public void setFabricante(Fabricante fabricante) {
+	public void setFabricante(List<Fabricante> fabricante) {
 		this.fabricante = fabricante;
 	}
 
-	public Inspecao getInspecao() {
+	public List<Inspecao> getInspecao() {
 		return inspecao;
 	}
 
-	public void setInspecao(Inspecao inspecao) {
+	public void setInspecao(List<Inspecao> inspecao) {
 		this.inspecao = inspecao;
 	}
 
